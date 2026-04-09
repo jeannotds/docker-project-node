@@ -1,0 +1,16 @@
+version: "3.8"
+
+# // Define the services that make up your application : ce sont decontenairs qui vont tourner
+services:
+  ngnix:
+    image: nginx:latest
+    # volumes:
+    #   - ngnix-conf:/etc/nginx/ # 1. on va monter un volume qui va contenir la configuration de ngnix
+    ports:
+      - "8080:80" # 4. on va exposer le port 80 de ngnix pour pouvoir accéder à l'application depuis le navigateur
+  
+  node:
+    build: ./app # 2. build : on va construire une image à partir du Dockerfile qui se trouve dans le dossier app
+    # image: node:latest 
+    volumes:
+      - ./app:/app # 3. on va monter un volume qui va contenir le code de l'application
