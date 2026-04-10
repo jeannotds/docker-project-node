@@ -1,11 +1,9 @@
-version: "3.8"
-
 # // Define the services that make up your application : ce sont decontenairs qui vont tourner
 services:
   ngnix:
     image: nginx:latest
-    # volumes:
-    #   - ngnix-conf:/etc/nginx/ # 1. on va monter un volume qui va contenir la configuration de ngnix
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf # 1. on va monter un volume qui va contenir la configuration de ngnix
     ports:
       - "8080:80" # 4. on va exposer le port 80 de ngnix pour pouvoir accéder à l'application depuis le navigateur
   
